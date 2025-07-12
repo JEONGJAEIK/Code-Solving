@@ -8,17 +8,20 @@ public class Main {
         BufferedReader br = new BufferedReader(new java.io.InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new java.io.OutputStreamWriter(System.out));
         StringBuilder sb = new StringBuilder();
-        List<Integer> list = new ArrayList<>();
 
-        String input = br.readLine();
-        for (char c : input.toCharArray()) {
-            list.add((int) c - 48);
+        char[] digits = br.readLine().toCharArray();
+        Character[] digitChars = new Character[digits.length];
+        for (int i = 0; i < digits.length; i++) {
+            digitChars[i] = digits[i];
         }
 
-        list.sort(Comparator.reverseOrder());
-        for (Integer integer : list) {
-            sb.append(integer + "");
+        Arrays.sort(digitChars, Comparator.reverseOrder());
+
+
+        for (char c : digitChars) {
+            sb.append(c);
         }
+
         bw.write(sb.toString());
         bw.flush();
         bw.close();

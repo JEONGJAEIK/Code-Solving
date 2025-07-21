@@ -1,36 +1,31 @@
 import java.io.*;
-import java.util.Arrays;
-import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        StringBuilder sb = new StringBuilder();
 
-        int start = Integer.parseInt(st.nextToken());
-        int end = Integer.parseInt(st.nextToken());
+        String[] input = br.readLine().split(" ");
+        int m = Integer.parseInt(input[0]);
+        int n = Integer.parseInt(input[1]);
 
-        boolean[] isPrime = new boolean[end + 1];
-        Arrays.fill(isPrime, true);
-        isPrime[0] = isPrime[1] = false;
+        boolean[] isNotPrime = new boolean[n + 1];
+        isNotPrime[0] = isNotPrime[1] = true;
 
-        for (int i = 2; i * i <= end; i++) {
-            if (isPrime[i]) {
-                for (int j = i * i; j <= end; j += i) {
-                    isPrime[j] = false;
+        for (int i = 2; i * i <= n; i++) {
+            if (!isNotPrime[i]) {
+                for (int j = i * i; j <= n; j += i) {
+                    isNotPrime[j] = true;
                 }
             }
         }
 
-        for (int i = start; i <= end; i++) {
-            if (isPrime[i]) {
-                sb.append(i).append("\n");
+        for (int i = m; i <= n; i++) {
+            if (!isNotPrime[i]) {
+                bw.write(i + "\n");
             }
         }
 
-        bw.write(sb.toString());
         bw.flush();
         bw.close();
     }

@@ -4,12 +4,7 @@ class Solution {
     public String solution(String[] participant, String[] completion) {
         HashMap<String, Integer> map = new HashMap<>();
         for (String a : participant) {
-            if (map.containsKey(a)) {
-                Integer value = map.get(a);
-                map.put(a, value + 1);
-            } else {
-                map.put(a, 1);
-            }
+            map.put(a, map.getOrDefault(a, 0) + 1);
         }
         
         for (String b : completion) {
